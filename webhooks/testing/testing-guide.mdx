@@ -1,0 +1,38 @@
+---
+title: "Testing Guide"
+description: "Test delivery, signature verification, retries, and failure behavior."
+---
+
+Use the tools and scenarios below to validate Spark360 webhook behavior end to end.
+
+## Recommended tools
+
+| Tool | URL | Best for |
+|---|---|---|
+| webhook.site | https://webhook.site | Quick ad-hoc HTTPS endpoint and live request inspection |
+| Pipedream | https://pipedream.com | Persistent endpoint and forced 4xx/5xx response simulation |
+
+## Core scenarios
+
+| Scenario | How to test | Expected result |
+|---|---|---|
+| Successful delivery | Use webhook.site and trigger a lead | `status = delivered` with correct headers/signature |
+| HMAC verification | Recompute signature using your secret | Signature validates |
+| 4xx abandonment | Return 403 from endpoint | Immediate `abandoned`, no retries |
+| 5xx retry sequence | Return 500 from endpoint | Retries, warning on attempt 4, abandonment on attempt 5 |
+| Required core event | Configure optional events only | `lead.enriched` still fires |
+| Rental co-fire | Trigger non-owner-occupied lead | `lead.enriched` and `lead.rental_alert` both deliver |
+| Test Endpoint button | Run test from Settings UI | Sample `lead.enriched` delivered with inline response |
+
+## Lead payload defaults to verify
+
+For lead events, verify:
+
+```json
+{
+  "widget_version": "01",
+  "source_tracking": {
+    "source_code": "01"
+  }
+}
+```

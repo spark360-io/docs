@@ -1,0 +1,17 @@
+---
+title: "HTTPS Enforcement"
+description: "Endpoint URL requirements for Spark360 webhook subscriptions."
+---
+
+Spark360 requires HTTPS webhook endpoints and rejects insecure URLs at create and edit time.
+
+<Warning>
+  Any `endpoint_url` that does not begin with `https://` is rejected.
+</Warning>
+
+## Secret handling notes
+
+- Signing secrets are generated at subscription creation
+- Secrets are stored in Supabase Vault
+- Subscription rows store only the Vault UUID reference
+- Secret regeneration immediately invalidates the previous secret

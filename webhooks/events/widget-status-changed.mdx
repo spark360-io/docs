@@ -1,0 +1,27 @@
+---
+title: "widget.status_changed"
+description: "Optional webhook fired when organizations.widget_status changes."
+---
+
+`widget.status_changed` fires from the existing `widget.updated` handling path when `organizations.widget_status` is updated.
+
+<Note>
+  `lead.enriched` is required for all subscriptions, even if only widget events are enabled.
+</Note>
+
+```json
+{
+  "event": "widget.status_changed",
+  "event_id": "uuid-v4",
+  "timestamp": "2026-04-06T14:22:00Z",
+  "organization_id": "b8ff2073-...",
+  "data": {
+    "widget_status": "inactive",
+    "previous_status": "active",
+    "changed_by": "system"
+  }
+}
+```
+
+- `changed_by: "system"` indicates a subscription-status-driven update
+- `changed_by: "admin"` indicates a SuperAdmin manual toggle

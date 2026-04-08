@@ -1,0 +1,38 @@
+---
+title: "Events Overview"
+description: "Understand Spark360 outbound events, trigger points, and availability."
+---
+
+Spark360 publishes lead and widget events from application-layer trigger points after core data writes complete.
+
+| Quantiv Event | `leadStatus` | S360 Outbound Event | Trigger | Availability |
+|---|---|---|---|---|
+| `lead.created` | `address_info_provided` | `lead.address_preview` | Leads INSERT | Optional |
+| `lead.updated` | `project_details_provided` | *(no outbound event)* | — | — |
+| `lead.updated` | `personal_info_and_estimate_provided` | `lead.enriched` | Enrichment write-back complete | **REQUIRED — locked** |
+| `lead.updated` | `personal_info_and_estimate_provided` + `ownerOccupied=false` | `lead.rental_alert` | Same as above, occupancy check | Optional |
+| `lead.updated` | `contact_info_provided` | `lead.contact_requested` | Leads UPDATE | Optional |
+| `widget.updated` | n/a | `widget.status_changed` | `organizations.widget_status` UPDATE | Optional |
+
+<Note>
+  `lead.enriched` is mandatory for every webhook subscription and cannot be deselected.
+</Note>
+
+## Lead payload defaults
+
+Every lead event includes these defaults:
+
+```json
+{
+  "widget_version": "01",
+  "source_tracking": {
+    "source_code": "01"
+  }
+}
+```
+
+## Event sequencing notes
+
+- `lead.enriched` fires only after enrichment write-back is complete
+- `lead.rental_alert` can co-fire with `lead.enriched` when `owner_occupied = false`
+- `lead.address_preview` is address-only (no name or contact info)

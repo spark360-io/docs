@@ -1,0 +1,27 @@
+---
+title: "Failure Notifications"
+description: "Warning and abandonment email behavior for repeated delivery failures."
+---
+
+Spark360 sends operational warning and abandonment emails to organization owner/admin users when endpoint failures persist.
+
+| Attempt | Action | Email behavior |
+|---|---|---|
+| 1-3 | Retry silently | No email |
+| 4 | Retry | Warning email |
+| 5 | Abandon | Abandonment email |
+
+Warning email summary:
+
+- Endpoint is failing
+- May be paused in approximately 4 hours if failures continue
+- Includes endpoint URL, HTTP response, and Settings > Webhooks link
+
+Abandonment email summary:
+
+- Endpoint paused after 5 consecutive failures
+- Includes endpoint URL, HTTP response, and Settings > Webhooks link
+
+<Note>
+  Email sends are non-blocking and must not interrupt the delivery worker loop.
+</Note>

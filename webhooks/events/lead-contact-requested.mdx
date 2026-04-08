@@ -1,0 +1,48 @@
+---
+title: "lead.contact_requested"
+description: "Optional webhook fired when contact_info_provided is received."
+---
+
+`lead.contact_requested` fires on `contact_info_provided` and arrives after `lead.enriched`.
+
+<Note>
+  `lead.enriched` is required for every subscription.
+</Note>
+
+Lead payloads include:
+
+```json
+{
+  "widget_version": "01",
+  "source_tracking": {
+    "source_code": "01"
+  }
+}
+```
+
+```json
+{
+  "event": "lead.contact_requested",
+  "event_id": "uuid-v4",
+  "timestamp": "2026-04-06T14:22:00Z",
+  "organization_id": "b8ff2073-...",
+  "data": {
+    "lead_id": "b543b8ca-87ff-45e9-8d04-65c61853c853",
+    "flow_id": "ad64cf83-45d9-4f72-a57a-c028f0678fdc",
+    "lead_status": "contact_info_provided",
+    "widget_version": "01",
+    "source_tracking": { "source_code": "01" },
+    "contact": {
+      "first_name": "Rhett",
+      "last_name": "Butler",
+      "email": "rhett.butler@email.com",
+      "phone": "(770) 448-5252"
+    },
+    "contact_preference": {
+      "phone_call": "Weekend works best",
+      "appointment": null,
+      "asked_not_to_contact": false
+    }
+  }
+}
+```

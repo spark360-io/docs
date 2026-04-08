@@ -1,0 +1,53 @@
+---
+title: "Quickstart"
+description: "Register your endpoint and receive your first Spark360 webhook event."
+---
+
+Use this guide to create a webhook subscription and validate a successful delivery.
+
+## 1) Add an HTTPS endpoint
+
+Register an endpoint URL that begins with `https://`.
+
+<Warning>
+  Non-HTTPS endpoints are rejected at create and edit time.
+</Warning>
+
+## 2) Choose event types
+
+Available events:
+
+- `lead.address_preview`
+- `lead.enriched`
+- `lead.rental_alert`
+- `lead.contact_requested`
+- `widget.status_changed`
+
+<Note>
+  `lead.enriched` is required and always included.
+</Note>
+
+## 3) Save and copy the signing secret
+
+When a subscription is created, Spark360 generates a signing secret and stores it in Supabase Vault. The secret is displayed once at creation time.
+
+## 4) Trigger a test event
+
+Use the Test Endpoint action in Settings to send a sample `lead.enriched` payload and inspect:
+
+- HTTP response code
+- Response body
+- Signature header
+
+## 5) Verify lead payload defaults
+
+All lead payloads include:
+
+```json
+{
+  "widget_version": "01",
+  "source_tracking": {
+    "source_code": "01"
+  }
+}
+```

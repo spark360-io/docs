@@ -1,0 +1,18 @@
+---
+title: "Idempotency"
+description: "Use event_id to deduplicate and safely handle retries."
+---
+
+Spark360 retries failed deliveries, so subscribers should process webhook events idempotently.
+
+## Recommended strategy
+
+- Use `event_id` as your idempotency key
+- Store processed `event_id` values in your system
+- Ignore duplicate `event_id` values on retry
+
+## Why this matters
+
+- Retries are expected for transient failures
+- Duplicate HTTP deliveries can occur by design during retry windows
+- Idempotency prevents duplicate CRM writes and repeated automations

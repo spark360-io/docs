@@ -1,0 +1,36 @@
+---
+title: "Scores & Buyer Insights"
+description: "Score scales, conversions, and sales_hacks payload rules."
+---
+
+Spark360 sends normalized score values and curated buyer insight hacks in outbound payloads.
+
+| Score | Quantiv Scale | S360 Scale | Conversion |
+|---|---|---|---|
+| `lead_integrity_score` | 1-10 | 1-10 | None required |
+| `elevate_score` | 1-10 | 1-10 | None required |
+| `surepay_score` | 1-5 | 1-10 | Raw x 2 |
+
+## sales_hacks behavior
+
+- `sales_hacks` includes two highest-scoring actionable buyer insight hacks
+- Null hacks are omitted, not emitted as null keys
+- `elevate_hack` and `surepay_hack` are included when available
+- Raw Quantiv `buyerInsights` score blobs are not included in outbound payloads
+
+## Lead payload defaults
+
+Every lead payload includes:
+
+```json
+{
+  "widget_version": "01",
+  "source_tracking": {
+    "source_code": "01"
+  }
+}
+```
+
+<Note>
+  `lead.enriched` is required and cannot be disabled.
+</Note>

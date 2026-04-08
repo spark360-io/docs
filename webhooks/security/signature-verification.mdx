@@ -1,0 +1,58 @@
+---
+title: "Signature Verification"
+description: "Verify Spark360 webhook authenticity using HMAC-SHA256."
+---
+
+Every webhook request includes a signed header so your endpoint can verify authenticity before processing payload data.
+
+```text
+X-Spark360-Signature: sha256=<hmac_sha256(secret, raw_body)>
+```
+
+<Warning>
+  Verify the signature against the raw request body bytes before parsing JSON.
+</Warning>
+
+<CodeGroup>
+```javascript JavaScript (Node.js)
+import crypto from 'crypto';
+
+export function verifySignature(rawBody, signatureHeader, secret) {
+  const incoming = signatureHeader.replace('sha256=', '');
+  const expected = crypto
+    .createHmac('sha256', secret)
+    .update(rawBody, 'utf8')
+    .digest('hex');
+
+  return crypto.timingSafeEqual(
+    Buffer.from(incoming, 'hex'),
+    Buffer.from(expected, 'hex'),
+  );
+}
+```
+
+```php PHP
+<?php
+
+function verify_signature(string $rawBody, string $signatureHeader, string $secret): bool {
+    $incoming = str_replace('sha256=', '', $signatureHeader);
+    $expected = hash_hmac('sha256', $rawBody, $secret);
+
+    return hash_equals($expected, $incoming);
+}
+```
+
+```python Python
+import hmac
+import hashlib
+
+def verify_signature(raw_body: str, signature_header: str, secret: str) -> bool:
+    incoming = signature_header.replace('sha256=', '')
+    expected = hmac.new(
+        secret.encode('utf-8'),
+        raw_body.encode('utf-8'),
+        hashlib.sha256,
+    ).hexdigest()
+    return hmac.compare_digest(expected, incoming)
+```
+</CodeGroup>

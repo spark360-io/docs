@@ -1,0 +1,96 @@
+---
+title: "lead.enriched"
+description: "Core required webhook fired after enrichment write-back completes."
+---
+
+`lead.enriched` is the primary high-value event and fires only after Spark360 enrichment data is written back.
+
+<Warning>
+  `lead.enriched` is required and cannot be disabled.
+</Warning>
+
+Lead payloads include:
+
+```json
+{
+  "widget_version": "01",
+  "source_tracking": {
+    "source_code": "01"
+  }
+}
+```
+
+```json
+{
+  "event": "lead.enriched",
+  "event_id": "uuid-v4",
+  "timestamp": "2026-04-06T14:22:00Z",
+  "organization_id": "b8ff2073-...",
+  "data": {
+    "lead_id": "b543b8ca-87ff-45e9-8d04-65c61853c853",
+    "flow_id": "ad64cf83-45d9-4f72-a57a-c028f0678fdc",
+    "lead_status": "personal_info_and_estimate_provided",
+    "widget_version": "01",
+    "source_tracking": { "source_code": "01" },
+    "contact": {
+      "first_name": "Rhett",
+      "last_name": "Butler",
+      "email": "rhett.butler@email.com",
+      "phone": "(770) 448-5252",
+      "contact_consent": true
+    },
+    "address": {
+      "formatted": "4355 Candacraig, Johns Creek, GA",
+      "street_number": "4355",
+      "street": "Candacraig",
+      "city": "Alpharetta",
+      "state": "GA",
+      "zip": "30022",
+      "lat": 34.0324253,
+      "lng": -84.2327157
+    },
+    "property": {
+      "county": "Gwinnett",
+      "subdivision": "JAMESON MILL",
+      "type": "Residential",
+      "built_year": "2010",
+      "years_in_home": "16",
+      "owner_occupied": true,
+      "rental_alert": false,
+      "primary_owner": "John Joanna",
+      "accuracy_code": "H"
+    },
+    "roof_estimate": {
+      "estimate_number": "R5101UT33",
+      "cost_min": 24667,
+      "cost_max": 32456,
+      "roof_area": 5193.46,
+      "roof_material": "asphalt shingle",
+      "complexity": "moderate",
+      "average_pitch": 41.83,
+      "accuracy_alerts": {
+        "roof_area": "HIGH_AREA",
+        "roof_pitch": "NO_ALERTS"
+      }
+    },
+    "project_details": {
+      "reason": "It's leaking or has water spots",
+      "start_time": "In the next few weeks"
+    },
+    "spark360_scores": {
+      "lead_integrity_score": 7,
+      "surepay_score": 4,
+      "elevate_score": 6,
+      "lead_integrity_defects": ["surname"]
+    },
+    "sales_hacks": {
+      "elevate_hack": "Cautiously upsell — present modest upgrades tied to efficiency or long-term savings.",
+      "surepay_hack": "Low reliability — recommend deposit up front and strong financing options.",
+      "buyer_insight_hacks": {
+        "popular_picks_hack": "Show what's trending in their area. Reinforce their decision is in line with other happy customers.",
+        "quality_first_buyer_hack": "Focus on material quality, expert installation, and long-term value."
+      }
+    }
+  }
+}
+```

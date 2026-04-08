@@ -1,0 +1,20 @@
+---
+title: "Common Envelope"
+description: "Shared webhook envelope fields for all Spark360 events."
+---
+
+All Spark360 webhook events use the same top-level envelope for consistent parsing and idempotency.
+
+```json
+{
+  "event": "lead.enriched",
+  "event_id": "uuid-v4",
+  "timestamp": "2026-04-06T14:22:00Z",
+  "organization_id": "b8ff2073-228d-4f0f-b5db-28b49cf4069e",
+  "data": {}
+}
+```
+
+- `event_id`: unique per delivery attempt; use for deduplication
+- `timestamp`: ISO 8601 UTC
+- `organization_id`: Spark360 organization UUID (same value as Quantiv `referenceId`)

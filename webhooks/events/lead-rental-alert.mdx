@@ -1,0 +1,48 @@
+---
+title: "lead.rental_alert"
+description: "Optional rental-specific webhook that can co-fire with lead.enriched."
+---
+
+`lead.rental_alert` fires alongside `lead.enriched` when `property.owner_occupied = false`.
+
+<Note>
+  `lead.enriched` remains required for all subscriptions.
+</Note>
+
+Lead payloads include:
+
+```json
+{
+  "widget_version": "01",
+  "source_tracking": {
+    "source_code": "01"
+  }
+}
+```
+
+```json
+{
+  "event": "lead.rental_alert",
+  "event_id": "uuid-v4",
+  "timestamp": "2026-04-06T14:22:00Z",
+  "organization_id": "b8ff2073-...",
+  "data": {
+    "lead_id": "b543b8ca-87ff-45e9-8d04-65c61853c853",
+    "flow_id": "ad64cf83-45d9-4f72-a57a-c028f0678fdc",
+    "widget_version": "01",
+    "source_tracking": { "source_code": "01" },
+    "contact": {
+      "first_name": "Rhett",
+      "last_name": "Butler",
+      "address": "4355 Candacraig, Johns Creek, GA"
+    },
+    "property": {
+      "owner_occupied": false,
+      "rental_alert": true
+    },
+    "spark360_scores": {
+      "lead_integrity_score": 7
+    }
+  }
+}
+```

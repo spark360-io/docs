@@ -1,87 +1,67 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Spark360 Developers",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#FF622C",
+    "light": "#FF8C5A",
+    "dark": "#E5501A"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Webhooks",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Getting Started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "webhooks/quickstart"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Events",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "webhooks/events/overview",
+              "webhooks/events/lead-address-preview",
+              "webhooks/events/lead-enriched",
+              "webhooks/events/lead-rental-alert",
+              "webhooks/events/lead-contact-requested",
+              "webhooks/events/widget-status-changed"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "Payload Reference",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "webhooks/payloads/common-envelope",
+              "webhooks/payloads/scores-and-buyer-insights"
             ]
           },
           {
-            "group": "AI tools",
+            "group": "Security",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
+              "webhooks/security/signature-verification",
+              "webhooks/security/https-enforcement"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Delivery & Reliability",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "webhooks/reliability/retry-behavior",
+              "webhooks/reliability/failure-notifications",
+              "webhooks/reliability/idempotency"
+            ]
+          },
+          {
+            "group": "Testing",
+            "pages": [
+              "webhooks/testing/testing-guide"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
@@ -91,32 +71,27 @@
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@spark360.io"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
-    }
+    ]
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/spark360",
+      "github": "https://github.com/spark360-io",
+      "linkedin": "https://linkedin.com/company/spark360"
     }
   }
 }

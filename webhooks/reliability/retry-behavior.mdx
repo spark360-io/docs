@@ -1,0 +1,35 @@
+---
+title: "Retry Behavior"
+description: "Delivery status transitions, retry schedule, and backoff behavior."
+---
+
+The delivery worker processes queued rows and applies status-based retry logic without blocking core lead workflows.
+
+## Processing states
+
+- `pending` -> waiting for first attempt
+- `failed` -> retry scheduled
+- `delivered` -> terminal success
+- `abandoned` -> terminal failure after retry policy or immediate 4xx
+
+## Response handling
+
+| HTTP Response | Action |
+|---|---|
+| `2xx` | mark row `delivered` |
+| `4xx` | mark row `abandoned` immediately |
+| `5xx` or timeout | mark row `failed`, increment attempts, schedule retry |
+
+## Retry schedule
+
+| Attempt | Delay after previous |
+|---|---|
+| 1 | Immediate |
+| 2 | 1 minute |
+| 3 | 10 minutes |
+| 4 | 1 hour |
+| 5 | 4 hours -> abandoned |
+
+<Warning>
+  Worker row selection and guarded updates must both accept `pending` and `failed` statuses so successful retries can transition failed rows to delivered.
+</Warning>
