@@ -2,6 +2,7 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Spark360 Developers",
+  "domains": ["docs.spark360.io"],
   "colors": {
     "primary": "#FF622C",
     "light": "#FF8C5A",
@@ -61,7 +62,21 @@
           }
         ]
       }
-    ]
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Spark360",
+          "href": "https://spark360.io",
+          "icon": "house"
+        },
+        {
+          "anchor": "Support",
+          "href": "mailto:support@spark360.io",
+          "icon": "envelope"
+        }
+      ]
+    }
   },
   "logo": {
     "light": "/logo/light.svg",
@@ -89,8 +104,7 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/spark360",
-      "github": "https://github.com/spark360-io",
+      "x": "https://x.com/spark360io",
       "linkedin": "https://linkedin.com/company/spark360"
     }
   }
