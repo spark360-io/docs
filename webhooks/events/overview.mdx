@@ -33,6 +33,11 @@ Every lead event includes these defaults:
 
 ## Event sequencing notes
 
-- `lead.enriched` fires only after enrichment write-back is complete
-- `lead.rental_alert` can co-fire with `lead.enriched` when `owner_occupied = false`
-- `lead.address_preview` is address-only (no name or contact info)
+1. `lead.address_preview` fires first on initial address submission and is address-only (no name or contact info).
+2. `lead.enriched` fires after enrichment is complete and write-back includes scores, buyer insights, and roof estimate fields.
+3. `lead.rental_alert` can fire alongside `lead.enriched` when `owner_occupied = false`.
+4. `lead.contact_requested` fires last only if the homeowner completes the optional contact preference step.
+
+<Note>
+  `lead.contact_requested` is optional and only fires when the final contact step is completed. It always arrives after `lead.enriched`, never before.
+</Note>

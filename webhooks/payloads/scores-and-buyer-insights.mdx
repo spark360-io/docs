@@ -5,18 +5,22 @@ description: "Score scales, conversions, and sales_hacks payload rules."
 
 Spark360 sends normalized score values and curated buyer insight hacks in outbound payloads.
 
-| Score | Quantiv Scale | S360 Scale | Conversion |
-|---|---|---|---|
-| `lead_integrity_score` | 1-10 | 1-10 | None required |
-| `elevate_score` | 1-10 | 1-10 | None required |
-| `surepay_score` | 1-5 | 1-10 | Raw x 2 |
+| Score | Payload Scale | Conversion |
+|---|---|---|
+| `lead_integrity_score` | 1-10 | None required |
+| `elevate_score` | 1-10 | None required |
+| `surepay_score` | 1-10 | Normalized by Spark360 before payload delivery |
 
 ## sales_hacks behavior
 
 - `sales_hacks` includes two highest-scoring actionable buyer insight hacks
 - Null hacks are omitted, not emitted as null keys
 - `elevate_hack` and `surepay_hack` are included when available
-- Raw Quantiv `buyerInsights` score blobs are not included in outbound payloads
+- Raw source score blobs are not included in outbound payloads
+
+## Score normalization
+
+`surepay_score` is normalized to the 1-10 scale by Spark360 before being included in webhook payloads. All three scores use the same 1-10 scale for consistency.
 
 ## Lead payload defaults
 
