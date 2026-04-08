@@ -8,7 +8,7 @@
     "light": "#FF8C5A",
     "dark": "#E5501A"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/logo/favicon.svg",
   "navigation": {
     "tabs": [
       {
@@ -79,8 +79,8 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/spark360-logo-primary.svg",
+    "dark": "/logo/spark360-logo-mono-white.svg"
   },
   "navbar": {
     "links": [
