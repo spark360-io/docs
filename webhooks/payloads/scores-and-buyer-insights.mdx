@@ -1,40 +1,159 @@
 ---
 title: "Scores & Buyer Insights"
-description: "Score scales, conversions, and sales_hacks payload rules."
+description: "Lead scoring definitions, Buyer Insights guidance, and sales_hacks payload behavior."
 ---
 
-Spark360 sends normalized score values and curated buyer insight hacks in outbound payloads.
+This page defines the scoring fields included in webhook payloads and how to interpret Buyer Insights and sales_hacks output.
 
-| Score | Payload Scale | Conversion |
+## 1) Lead Integrity Score
+
+**Lead Integrity Score** indicates overall lead quality based on factors such as zoning classification, owner occupancy status, structure presence, and surname match confidence.
+
+### Lead Integrity Score Values
+
+| Score | Quality Level | Description |
 |---|---|---|
-| `lead_integrity_score` | 1-10 | None required |
-| `elevate_score` | 1-10 | None required |
-| `surepay_score` | 1-10 | Normalized by Spark360 before payload delivery |
+| `null` | Unknown | Lead quality can not be determined. |
+| `10-9` | Outstanding | Highest lead quality. |
+| `8-7` | Strong | Reliable lead. |
+| `6-5` | Moderate | Average lead quality. |
+| `4-3` | Weak | Low-quality lead. |
+| `2-1` | Very Weak | Very low lead quality. |
+| `0` | Unreliable | Untrustworthy lead. |
 
-## sales_hacks behavior
+### Lead Integrity Defects
 
-- `sales_hacks` includes two highest-scoring actionable buyer insight hacks
-- Null hacks are omitted, not emitted as null keys
+Lead Integrity Defects identify which factors lowered confidence.
+
+| Defect | Description |
+|---|---|
+| `null` | Lead Defects can not be determined. |
+| `zoning` | Property type is not confirmed as residential. |
+| `occupancy` | Property is not confirmed as occupied by the owner. |
+| `structure` | Structure is not confirmed as present at the address. |
+| `surname` | Surname is not confirmed to match one of the names on the deed. |
+
+<Note>
+  A `null` value indicates the field could not be determined from available data.
+</Note>
+
+## 2) SurePay Score
+
+SurePay Score indicates payment reliability. Higher values indicate greater likelihood to perform and meet payment obligations.
+
+Spark360 presents SurePay Score on a 1-10 scale in webhook payloads.
+
+### SurePay Score Values
+
+| Value | Description |
+|---|---|
+| `null` | Score can not be determined. |
+| `5` | High likelihood to perform and meet obligations. High likelihood to qualify for the best interest rates. |
+| `4` | Likely to perform and meet obligations. Likely to qualify for most loans at slightly higher rates. |
+| `3` | Average likelihood to perform and meet obligations. May qualify for some loans at higher rates. |
+| `2` | Poor likelihood to perform and meet obligations. May qualify for some loans at significantly higher rates. |
+| `1` | Unlikely to perform and meet obligations. Highly unlikely to qualify for any loans. |
+
+## 3) Elevate Score
+
+Elevate Score indicates receptiveness and financial ability for premium options and upsell opportunities.
+
+### Elevate Score Values
+
+| Value | Description |
+|---|---|
+| `null` | Score can not be determined. |
+| `10` | Extremely Likely |
+| `9` | Highly Likely |
+| `8` | Very Likely |
+| `7` | Somewhat Likely |
+| `6` | Likely |
+| `5` | Somewhat Unlikely |
+| `4` | Very Unlikely |
+| `3` | Highly Unlikely |
+| `1-2` | Extremely Unlikely |
+
+## 4) Buyer Insights Scores
+
+Buyer Insights profiles consumer buying style to guide messaging and package recommendations.
+
+### Buyer Insights Scores Description
+
+| Score | Description |
+|---|---|
+| **Savvy Shopper** | **Rationale**: These homeowners conduct extensive research and compare multiple options—not necessarily to find the lowest price, but to ensure they make a well-informed, risk-averse decision. These consumers like to compare prices across different sites before purchasing and typically read online reviews and consumer reports. **Sales Approach**: Build trust by offering side-by-side comparisons, testimonials, and third-party validations. Reinforce their ability to make an educated decision while subtly guiding them toward your best offering. |
+| **Brand Loyalist** | **Rationale**: These homeowners have strong brand preferences and believe that reputation equates to reliability. They may challenge recommendations that deviate from their preselected brands. These consumers are willing to pay more for proven and reputable brands. **Sales Approach**: Align with their existing knowledge by reinforcing brand credibility. Emphasize manufacturer warranties, certifications, and brand-backed guarantees. If proposing alternatives, focus on comparable or superior features rather than price. Educate the consumer about the brand if you sell a product in which brand awareness is limited. |
+| **Trendsetter** | **Rationale**: These homeowners love being ahead of the curve and are eager to explore innovative, cutting-edge solutions. They value exclusivity and uniqueness in their purchases. These consumers are trendsetters and early adopters of new products. **Sales Approach**: Present the newest, most innovative products first. Emphasize exclusivity, technological advancements, and the opportunity to be among the first to own the latest home improvement solutions. |
+| **Budget-Savvy Buyer** | **Rationale**: These homeowners prioritize affordability and perceived value over brand reputation. They tend to emphasize cost-efficiency in their decision-making process. Price is more important to these consumers than brand name. **Sales Approach**: Present cost-effective solutions that maximize value. Highlight financing options, cost savings over time, and product benefits that justify the investment. Be prepared to handle objections related to pricing. |
+| **Quality First Buyer** | **Rationale**: These buyers prioritize durability, craftsmanship, and peace of mind over price but may struggle to define what “quality” looks like. Quality matters for these consumers, and they are willing to pay more for fresh ingredients, durable materials, and quality craftsmanship. **Sales Approach**: Focus on quality differentiators such as superior materials, expert installation, and longevity. Help them visualize potential risks of choosing lower-quality options and reassure them of the long-term value. |
+| **Impulse Shopper (Can’t Say No)** | **Rationale**: These homeowners are easily persuaded to add features or upgrades that enhance functionality or perceived value. These spenders find it difficult to say 'no' to things that catch their eyes. They recognize they are "spenders" rather than "savers" and appreciate a convenient purchase opportunity. Top of mind = In the cart. **Sales Approach**: Strategically introduce upgrades and enhancements throughout the conversation. Highlight benefits of add-ons in a way that makes them feel essential rather than optional. Use visual demonstrations to reinforce desirability. |
+| **Popular Picks** | **Rationale**: These buyers seek social validation and prefer solutions that align with current trends and widely accepted choices. Online reviews and recommendations influence them significantly. **Sales Approach**: Leverage social proof by showcasing positive customer testimonials, industry trends, and best-selling options. Reinforce that their decision aligns with what other satisfied homeowners are choosing. |
+
+### Buyer Insights Values
+
+| Value | Description |
+|---|---|
+| `null` | Score can not be determined. |
+| `10` | Extremely Likely |
+| `9` | Highly Likely |
+| `8` | Very Likely |
+| `7` | Somewhat Likely |
+| `6` | Likely |
+| `5` | Somewhat Unlikely |
+| `4` | Very Unlikely |
+| `3` | Highly Unlikely |
+| `2` | Extremely Unlikely |
+| `1` | Unknown |
+
+### `accuracy_code`
+
+The `accuracy_code` field indicates how directly scores map to the provided homeowner/address inputs.
+
+| Value | Description |
+|---|---|
+| `P` | Scores are directly related to the individual (owner) of the address, based on the provided address data. |
+| `A` | Scores are directly related to a primary household member associated with the address, based on the provided address data. |
+| `G` | Scores reflect the modeled profile of the homeowner based on typical owner profiles within a narrow geographic area of the provided address data. |
+| `N` | No relevant data could be matched based on the provided information. |
+
+## 5) Sales Hacks
+
+Sales Hacks provide actionable guidance derived from Buyer Insights, SurePay, and Elevate signals.
+
+- `sales_hacks` includes only the two highest-scoring actionable buyer insight hacks
 - `elevate_hack` and `surepay_hack` are included when available
-- Raw source score blobs are not included in outbound payloads
+- Null hacks are omitted from payloads entirely
 
-## Score normalization
+<Note>
+  A Sales Hack value appears for a Buyer Insight only when the related Buyer Insight Score meets or exceeds `8`.
+</Note>
 
-`surepay_score` is normalized to the 1-10 scale by Spark360 before being included in webhook payloads. All three scores use the same 1-10 scale for consistency.
+<Note>
+  Null hack fields are omitted from webhook payloads rather than returned as `null`.
+</Note>
 
-## Lead payload defaults
+## `lead.enriched` payload context
 
-Every lead payload includes:
+Scores and Buyer Insights appear in `lead.enriched` payload context:
 
 ```json
 {
-  "widget_version": "01",
-  "source_tracking": {
-    "source_code": "01"
+  "spark360_scores": {
+    "lead_integrity_score": 7,
+    "surepay_score": 4,
+    "elevate_score": 6,
+    "lead_integrity_defects": ["surname"]
+  },
+  "sales_hacks": {
+    "elevate_hack": "Cautiously upsell - present modest upgrades tied to efficiency or long-term savings.",
+    "surepay_hack": "Low reliability - recommend deposit up front and strong financing options.",
+    "buyer_insight_hacks": {
+      "popular_picks_hack": "Show what's trending in their area. Reinforce their decision is in line with other happy customers.",
+      "quality_first_buyer_hack": "Focus on material quality, expert installation, and long-term value."
+    }
+  },
+  "property": {
+    "accuracy_code": "H"
   }
 }
 ```
-
-<Note>
-  `lead.enriched` is required and cannot be disabled.
-</Note>
