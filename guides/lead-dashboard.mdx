@@ -1,0 +1,263 @@
+---
+title: "Lead Dashboard Guide"
+description: "Everything you need to know about reading, interpreting, and acting on your Spark360 leads."
+---
+
+## Overview
+
+The Spark360 Lead Dashboard is your central command center for managing, prioritizing, and acting on inbound leads generated through your Spark. It is designed to answer three questions for every lead:
+
+- Is this lead valid? -> Lead Score
+- Can they pay? -> SurePay Score
+- Will they upgrade? -> Elevate Score
+
+Use all three together to prioritize your follow-up and maximize close rates.
+
+## Dashboard Layout
+
+<Note>
+📸 Screenshot placeholder — Full dashboard with numbered callouts (1–8)
+</Note>
+
+### (1) Live Feed Status Indicator
+
+Shows whether your Spark is actively capturing leads.
+
+- Green = Active. Leads are captured in real time.
+- Orange = Inactive. No leads will be captured.
+
+<Warning>
+If your Live Feed shows Inactive, no new leads will come in. Check your Spark status in Settings immediately.
+</Warning>
+
+### (2) Active Leads Counter
+
+Total number of leads in your active queue ready for follow-up.
+
+### (3) Lead Views
+
+Three views to organize your leads:
+
+- Active — Completed leads ready for action
+- Archived — Previously removed leads (not deleted, recoverable)
+- Address-Only — Incomplete submissions where a homeowner entered an address but did not complete the process
+
+<Note>
+Address-Only leads are not counted toward subscription limits. They can be valuable for remarketing purposes.
+</Note>
+
+### (4) Refresh Icon
+
+Click to load the latest lead activity. An orange dot on the refresh icon means new activity is available since your last refresh.
+
+### (5) Export Button
+
+Downloads your current lead view as a CSV file. The export includes all expanded data fields for each lead.
+
+## Reading the Lead Table
+
+<Note>
+📸 Screenshot placeholder — Lead table with labeled columns (A–I)
+</Note>
+
+### (A) Expand Arrow
+
+Click the arrow to expand a lead row and view full lead details including property information, integrity breakdown, roof estimate, and follow-up request.
+
+### (B) Lead
+
+Displays the lead's name, submission time, and time elapsed since submission.
+
+Icons that may appear:
+
+- ✅ Valid lead — no integrity issues detected
+- ⚠️ Warning — a potential data issue was detected (name mismatch, zoning issue, or no confirmed structure). Verify before dispatching a rep.
+- 🏘️ Rental tag — property is not owner-occupied
+
+### (C) Value
+
+Estimated project value range based on roof size, materials, and complexity. Use this to prioritize high-value opportunities.
+
+### (D) Lead Score
+
+Measures how reliable the lead data is. See Understanding Your Scores below for full detail.
+
+### (E) SurePay Score
+
+Indicates the likelihood the homeowner can pay or qualify for financing. See Understanding Your Scores below.
+
+### (F) Elevate Score
+
+Indicates the likelihood the homeowner will choose premium options or upgrades. See Understanding Your Scores below.
+
+### (G) Buyer Insights
+
+Shows the top two buying behavior profiles and their associated Sales Hacks — instant guidance on how to approach this homeowner. See Buyer Insights & Sales Hacks below.
+
+### (H) Appointment
+
+Indicates whether the homeowner submitted a follow-up preference:
+
+- 📞 Call — time preference provided
+- 📅 Appointment — date and time selected
+- No icon — no follow-up request submitted
+
+### (I) Archive
+
+Click to move a lead out of your Active view. Archiving does not delete the lead — it can be recovered at any time from the Archived view.
+
+## Score Color Bands
+
+All three scores use the same color system:
+
+| Color | Range | Meaning |
+|-------|-------|---------|
+| 🟢 Green | 8–10 | High |
+| 🟠 Orange | 6–7.9 | Medium |
+| 🔴 Red | Below 6 | Low |
+
+## Expanded Lead View
+
+<Note>
+📸 Screenshot placeholder — Expanded lead row showing four sections
+</Note>
+
+### (1) Property & Owners
+
+Displays the property address, legal owner names on record, and contact details when provided. If the name submitted by the homeowner does not match the name on the deed, the Lead Score will reflect this as a defect.
+
+### (2) Lead Integrity Breakdown
+
+Shows the individual validation checks that contribute to the Lead Score:
+
+- Surname Match — does the submitted name match the deed?
+- Owner Occupancy — is the owner confirmed to live at the property?
+- Structure Present — is a structure confirmed at this address?
+- Residential Zoning — is the property confirmed as residential?
+
+Each failed check lowers the Lead Score.
+
+### (3) Roof Estimate Summary
+
+Provides roof details used to calculate the estimated project value:
+
+- Roof type and materials
+- Size (square footage)
+- Pitch and complexity
+
+### (4) Requested Follow-Up
+
+If the homeowner completed the optional contact step, this section displays:
+
+- Preferred contact type (call or appointment)
+- Requested date and time range
+
+## Understanding Your Scores
+
+### Lead Score (Validity Score)
+
+Measures the reliability of the lead based on four validation checks: surname match, owner occupancy, structure presence, and residential zoning.
+
+**How to use it:**
+
+- High score (8–10) → Safe to dispatch a rep
+- Medium score (6–7.9) → Use judgment; review the integrity breakdown
+- Low score (below 6) → Call and verify before sending a rep
+
+| Score | Quality Level | Description |
+|-------|--------------|-------------|
+| 10–9 | Outstanding | Highest lead quality |
+| 8–7 | Strong | Reliable lead |
+| 6–5 | Moderate | Average lead quality |
+| 4–3 | Weak | Low-quality lead |
+| 2–1 | Very Weak | Very low lead quality |
+| 0 | Unreliable | Untrustworthy lead |
+| null | Unknown | Could not be determined |
+
+### SurePay Score
+
+Indicates the likelihood the homeowner will pay for services or qualify for financing. Use this to assess financial risk before committing resources to a lead.
+
+| Score | Description |
+|-------|-------------|
+| 9–10 | High likelihood to pay. Likely to qualify for the best financing rates. |
+| 7–8 | Likely to pay. Likely to qualify for most financing at slightly higher rates. |
+| 5–6 | Average likelihood. May qualify for some financing at higher rates. |
+| 3–4 | Poor likelihood. May qualify for limited financing at significantly higher rates. |
+| 1–2 | Unlikely to pay. Highly unlikely to qualify for financing. |
+| null | Could not be determined. |
+
+### Elevate Score
+
+Measures the homeowner's receptiveness and financial ability to invest in premium options or upgrades.
+
+| Score | Description |
+|-------|-------------|
+| 10 | Extremely Likely |
+| 9 | Highly Likely |
+| 8 | Very Likely |
+| 7 | Somewhat Likely |
+| 6 | Likely |
+| 5 | Somewhat Unlikely |
+| 4 | Very Unlikely |
+| 3 | Highly Unlikely |
+| 1–2 | Extremely Unlikely |
+| null | Could not be determined |
+
+<Note>
+Use the Elevate Score to decide whether to lead with your premium product line. A score of 8 or above is a strong signal to present higher-end options first.
+</Note>
+
+## Buyer Insights & Sales Hacks
+
+Buyer Insights identifies the top two buying behavior profiles for each homeowner, powered by Spark360's data intelligence partnership. Each profile comes with a Sales Hack — instant, actionable guidance on how to tailor your sales approach.
+
+<Note>
+Sales Hacks are only provided when the associated Buyer Insight score meets or exceeds 8. If a score is below this threshold, no Sales Hack is shown for that profile.
+</Note>
+
+| Profile | Rationale | Sales Approach |
+|---|---|---|
+| Savvy Shopper | Conducts extensive research and compares multiple options. Reads reviews and consumer reports. Not always looking for the lowest price — looking to make the most informed decision. | Build trust with side-by-side comparisons, testimonials, and third-party validations. Guide them toward your best offering while reinforcing their ability to make an educated decision. |
+| Brand Loyalist | Has strong brand preferences and believes reputation equals reliability. Willing to pay more for proven brands. | Reinforce brand credibility with manufacturer warranties, certifications, and brand-backed guarantees. If proposing alternatives, focus on comparable features rather than price. |
+| Trendsetter | Loves being ahead of the curve. Values exclusivity and innovative solutions. An early adopter of new products. | Present the newest and most innovative products first. Emphasize exclusivity and the opportunity to be among the first to own the latest solutions. |
+| Budget-Savvy Buyer | Prioritizes affordability and perceived value over brand. Price matters more than brand name. | Present cost-effective solutions that maximize value. Highlight financing options, cost savings over time, and benefits that justify the investment. Be ready to handle pricing objections. |
+| Quality First Buyer | Prioritizes durability and craftsmanship over price but may struggle to define what quality looks like. Willing to pay more for quality materials and workmanship. | Focus on quality differentiators — superior materials, expert installation, and longevity. Help them visualize the risks of lower-quality options. |
+| Impulse Shopper | Easily persuaded to add features or upgrades. Recognizes they are a spender rather than a saver. Top of mind = In the cart. | Strategically introduce upgrades throughout the conversation. Make add-ons feel essential rather than optional. Use visual demonstrations to reinforce desirability. |
+| Popular Picks | Seeks social validation. Prefers solutions that align with trends and widely accepted choices. Heavily influenced by online reviews and recommendations. | Leverage social proof — positive testimonials, industry trends, and best-selling options. Reinforce that their decision aligns with what other satisfied homeowners are choosing. |
+
+## Lead Lifecycle
+
+1. Address submitted — homeowner enters their address. Appears as Address-Only.
+2. Project details entered — roof details collected. Not yet visible as an Active lead.
+3. Estimate generated — roof value calculated.
+4. Scores and insights appended — Lead Score, SurePay, Elevate, and Buyer Insights added.
+5. Lead appears as Active — ready for follow-up.
+
+If the homeowner completes the optional final step, contact information and follow-up preference are added to the existing lead.
+
+<Note>
+Only completed leads appear in your Active view. Address-Only leads are accessible separately and are not counted toward your subscription limits.
+</Note>
+
+## Managing Leads
+
+### Archiving a Lead
+
+Click the archive icon (column I) on any active lead to move it to your Archived view. Archiving removes the lead from your active queue but does not delete it.
+
+### Recovering an Archived Lead
+
+Navigate to the Archived view using the Lead Views control. Locate the lead and click the restore icon to return it to your Active view.
+
+### Address-Only Leads
+
+Access Address-Only leads using the Lead Views control. These leads submitted an address but did not complete the full widget process. They are useful for remarketing and neighborhood canvassing.
+
+## Best Practices
+
+- **Prioritize high value + high scores** — Focus first on leads with high estimated value and strong Lead Scores.
+- **Verify before dispatching** — A low Lead Score does not mean discard. Call the homeowner first to verify.
+- **Respond quickly** — Speed of response directly impacts close rates.
+- **Use Buyer Insights** — Tailor your pitch before picking up the phone. A 30-second review of the Buyer Insights profile can meaningfully change your approach.
+- **Don't ignore Address-Only leads** — These are warm prospects in your area. Consider canvassing or targeted outreach.

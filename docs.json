@@ -61,6 +61,17 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "guides/lead-dashboard"
+            ]
+          }
+        ]
       }
     ],
     "global": {
