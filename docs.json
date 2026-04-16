@@ -68,7 +68,8 @@
           {
             "group": "Getting Started",
             "pages": [
-              "guides/lead-dashboard"
+              "guides/lead-dashboard",
+              "guides/setup-your-spark"
             ]
           }
         ]
