@@ -5,7 +5,7 @@ description: "Understand Spark360 outbound events, trigger points, and availabil
 
 Spark360 publishes lead and widget events from application-layer trigger points after core data writes complete.
 
-| Quantiv Event | `leadStatus` | S360 Outbound Event | Trigger | Availability |
+| Event | `leadStatus` | S360 Outbound Event | Trigger | Availability |
 |---|---|---|---|---|
 | `lead.created` | `address_info_provided` | `lead.address_preview` | Leads INSERT | Optional |
 | `lead.updated` | `project_details_provided` | *(no outbound event)* | — | — |
