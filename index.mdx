@@ -21,17 +21,6 @@ Spark360 webhooks deliver key lead lifecycle and widget status events to your en
 - Lead events: `lead.address_preview`, `lead.enriched`, `lead.rental_alert`, `lead.contact_requested`
 - Widget event: `widget.status_changed`
 
-## Lead payload defaults
-
-All lead events include default values for:
-
-```json
-{
-  "widget_version": "01",
-  "source_tracking": {
-    "source_code": "01"
-  }
-}
-```
+For canonical payload structure (including grouped `source_tracking` and system fallback values), see [Events Overview](/webhooks/events/overview).
 
 Go to [Quickstart](/webhooks/quickstart) to register your endpoint and receive your first event.
