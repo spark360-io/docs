@@ -5,6 +5,12 @@ description: "Understand Spark360 outbound events, trigger points, and availabil
 
 Spark360 publishes lead and widget events from application-layer trigger points after core data writes complete.
 
+<Note>
+  Phase 2 (May 2026) changed the lead payload shape by moving `widget_version` inside
+  `source_tracking`. This is a breaking shape change for old consumers, but no
+  production subscribers existed when shipped, so migration cost was zero.
+</Note>
+
 | Event | `leadStatus` | S360 Outbound Event | Trigger | Availability |
 |---|---|---|---|---|
 | `lead.created` | `address_info_provided` | `lead.address_preview` | Leads INSERT | Optional |
@@ -18,15 +24,17 @@ Spark360 publishes lead and widget events from application-layer trigger points 
   `lead.enriched` is mandatory for every webhook subscription and cannot be deselected.
 </Note>
 
-## Lead payload defaults
+## Source tracking — system fallback values
 
 Every lead event includes these defaults:
 
 ```json
 {
-  "widget_version": "01",
   "source_tracking": {
-    "source_code": "01"
+    "widget_version": "01",
+    "widget_name": "Primary",
+    "source_code": "01",
+    "source_label": "Website"
   }
 }
 ```

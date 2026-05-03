@@ -24,15 +24,17 @@ Use the tools and scenarios below to validate Spark360 webhook behavior end to e
 | Rental co-fire | Trigger non-owner-occupied lead | `lead.enriched` and `lead.rental_alert` both deliver |
 | Test Endpoint button | Run test from Settings UI | Sample `lead.enriched` delivered with inline response |
 
-## Lead payload defaults to verify
+## Source tracking fallback values to verify
 
 For lead events, verify:
 
 ```json
 {
-  "widget_version": "01",
   "source_tracking": {
-    "source_code": "01"
+    "widget_version": "01",
+    "widget_name": "Primary",
+    "source_code": "01",
+    "source_label": "Website"
   }
 }
 ```

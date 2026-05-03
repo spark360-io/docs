@@ -13,9 +13,11 @@ Lead payloads include:
 
 ```json
 {
-  "widget_version": "01",
   "source_tracking": {
-    "source_code": "01"
+    "widget_version": "01",
+    "widget_name": "Primary",
+    "source_code": "01",
+    "source_label": "Website"
   }
 }
 ```
@@ -25,13 +27,17 @@ Lead payloads include:
   "event": "lead.enriched",
   "event_id": "uuid-v4",
   "timestamp": "2026-04-06T14:22:00Z",
-  "organization_id": "b8ff2073-...",
+  "organization_id": "b8ff2073-228d-4f0f-b5db-28b49cf4069e",
   "data": {
     "lead_id": "b543b8ca-87ff-45e9-8d04-65c61853c853",
     "flow_id": "ad64cf83-45d9-4f72-a57a-c028f0678fdc",
     "lead_status": "personal_info_and_estimate_provided",
-    "widget_version": "01",
-    "source_tracking": { "source_code": "01" },
+    "source_tracking": {
+      "widget_version": "01",
+      "widget_name": "Primary",
+      "source_code": "01",
+      "source_label": "Website"
+    },
     "contact": {
       "first_name": "Rhett",
       "last_name": "Butler",

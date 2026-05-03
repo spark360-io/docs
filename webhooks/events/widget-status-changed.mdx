@@ -14,7 +14,7 @@ description: "Optional webhook fired when organizations.widget_status changes."
   "event": "widget.status_changed",
   "event_id": "uuid-v4",
   "timestamp": "2026-04-06T14:22:00Z",
-  "organization_id": "b8ff2073-...",
+  "organization_id": "b8ff2073-228d-4f0f-b5db-28b49cf4069e",
   "data": {
     "widget_status": "inactive",
     "previous_status": "active",
@@ -25,3 +25,4 @@ description: "Optional webhook fired when organizations.widget_status changes."
 
 - `changed_by: "system"` indicates a subscription-status-driven update
 - `changed_by: "admin"` indicates a SuperAdmin manual toggle
+- `source_tracking` is intentionally omitted for this event because it is a widget-level status change, not a lead/source event.
