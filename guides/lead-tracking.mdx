@@ -1,0 +1,160 @@
+---
+title: "Lead Source Tracking"
+description: "Learn how to create, deploy, and manage lead sources so every incoming lead is attributed to the right marketing channel."
+---
+
+## 1) Introduction
+
+Lead Source Tracking helps you attribute incoming leads to the specific channels where you deploy your Spark360 widget experience. Instead of treating all traffic as one stream, you can see which source is producing each lead and use that visibility to improve campaign performance.
+
+Spark360 captures source attribution at the moment a lead arrives and preserves that attribution historically. This means your reporting stays accurate over time, even if you later rename or reorganize your sources. Each widget supports up to 10 active custom sources.
+
+![The Lead Source Tracking page in its initial state, showing only the system Website source.](/images/lead-tracking/01-lead-source-tracking-initial-state.png)
+
+## 2) How it works
+
+Each Spark360 subscriber has a widget configured for their website. Lead Source Tracking lets that same widget capture leads from multiple sources by using tracking URL parameters (`?v=` and `?s=`) that identify source context.
+
+When a lead arrives, Spark360 records the source used for that submission and stores it with the lead.
+
+<Tip>
+Source attribution is a snapshot at lead arrival. Historical attribution is preserved even if you later rename, archive, or restore a source.
+</Tip>
+
+## 3) The system source (SRC-01)
+
+Every subscriber starts with one built-in source named **Website**. This is the system source and its Source Code is **SRC-01**.
+
+It captures leads that arrive without specific tracking parameters, such as direct visits, organic search clicks, or other untagged traffic.
+
+<Note>
+The system source is immutable: SRC-01 cannot be archived or renamed.
+</Note>
+
+## 4) Creating a custom source
+
+Use the following walkthrough to create a custom source named **Facebook Ads**.
+
+<Steps>
+  <Step title="Open Lead Source Tracking">
+    In your Spark360 dashboard, go to **Settings** and open **Lead Source Tracking**.
+  </Step>
+  <Step title="Click Add Source">
+    Click **Add Source** (top-right button, or the empty-state add action if no custom sources exist yet).
+  </Step>
+  <Step title="Use the Add Source slide-over">
+    The slide-over panel opens for source creation.
+  </Step>
+  <Step title="Enter Source Name">
+    In **Source Name**, enter **Facebook Ads**.
+  </Step>
+  <Step title="Select Channel Category">
+    In **Channel Category**, choose **Social Media**.
+  </Step>
+  <Step title="Choose QR Code behavior">
+    Optionally check **Generate QR Code automatically**. You can skip this and generate a QR Code later.
+  </Step>
+  <Step title="Create the source">
+    Click **Create Source**.
+  </Step>
+  <Step title="Confirm it appears in the table">
+    The slide-over closes. Your new custom source appears near the top of the table with a newly assigned Source Code (for example, **SRC-02**).
+  </Step>
+  <Step title="Use the generated Tracking URL">
+    Spark360 auto-generates the source-specific **Tracking URL** and displays it in the Tracking URL column.
+  </Step>
+  <Step title="Check QR Code state">
+    If QR Code auto-generation was enabled, the QR Code column shows **Download**. If not, it shows **Generate**, which you can use later.
+  </Step>
+</Steps>
+
+<Tip>
+Source Codes are sequential and never reused. If a source is archived, that Source Code remains retired, and the next new source receives the next available number.
+</Tip>
+
+![The Add Source slide-over panel with the Facebook Ads source name and Social Media category selected.](/images/lead-tracking/03-add-source-facebook-ads-social-media.png)
+
+## 5) Using your tracking URL
+
+Each source has a Tracking URL shown in the **Tracking URL** column. The URL includes parameters that identify the source, such as `?roof-estimate=open&v=01&s=02`.
+
+Use the copy icon to copy the Tracking URL, then deploy it where that source is promoted. Common placements include:
+
+- Facebook Ads destination URLs
+- Google Ads destination URLs
+- Email signature links
+- Sponsored social posts
+- Yard signs and billboards (typically through QR Code usage)
+- Direct mail QR Codes
+
+You can run multiple sources at the same time. Each source points to the same widget flow but preserves separate attribution based on its Tracking URL.
+
+## 6) QR Code creation and download
+
+Each custom source can include an optional QR Code.
+
+- You can generate a QR Code during source creation with **Generate QR Code automatically**.
+- You can also generate it later using the **Generate** button in the QR Code column.
+- Once generated, use **Download** in the QR Code column to save the PNG.
+- The QR Code is also accessible from the source's Edit slide-over.
+- Each QR Code encodes the source's full Tracking URL, so scans launch the widget with the correct source attribution.
+- The QR Code uses your organization-specific brand color for visual consistency.
+
+<Note>
+Downloaded QR files follow this format: `<OrgName>-<SourceName>-v<widget_version>-s<source_code>-QR.png` (for example, `Spark360-Facebook-Ads-v01-s02-QR.png`).
+</Note>
+
+![Lead Source Tracking page showing custom sources with QR Code download links available.](/images/lead-tracking/04-lead-source-tracking-qr-download-and-generate.png)
+
+## 7) Reading source data on the dashboard
+
+Lead attribution appears directly in the leads experience:
+
+- In the Leads table, each lead has a Source pill in the rightmost Source column (for example, **Facebook Ads**).
+- Expanding a lead shows a **Lead Source** section with widget name, widget version, Source Code, and Source Name captured when that lead arrived.
+
+Attribution is historical and immutable at the lead level: renaming or archiving a source later does not alter previously captured lead attribution.
+
+For broader dashboard behavior, see the [Lead Dashboard Guide](/guides/lead-dashboard).
+
+![Leads dashboard with the Source column displaying source attribution pills for each lead.](/images/lead-tracking/06-leads-dashboard-source-pill-column.png)
+
+## 8) Source attribution in webhook payloads
+
+If you consume outbound lead webhooks, source attribution is included in the `source_tracking` object.
+
+- `widget_version`
+- `widget_name`
+- `source_code`
+- `source_label`
+
+`source_label` reflects the Source Name captured at lead arrival (snapshot behavior), not a live lookup against current source labels.
+
+For full payload structure, see the [Webhook payload reference](/webhooks/payloads/common-envelope).
+
+## 9) Managing sources
+
+Use row actions (ellipsis menu) to manage custom sources over time:
+
+- **Edit**: updates Source Name and Channel Category.
+- **Archive**: moves a source to Archived.
+- **Restore**: returns an archived source to Active.
+
+Important behavior:
+
+- Source Code is fixed and cannot be changed.
+- Leads already captured under a source retain their original attribution.
+- The system source (SRC-01) has no ellipsis menu and cannot be edited or archived.
+
+<Warning>
+A widget supports up to 10 active custom sources at a time. If you hit the limit, archive an existing custom source before adding a new one.
+</Warning>
+
+## 10) Limits and rules
+
+- Up to 10 active custom sources per widget (system source not counted in the 10).
+- Source Codes are sequential and never reused.
+- Source Names support up to 50 characters.
+- Channel Category values come from a predefined dropdown.
+- Tracking URLs are auto-generated and cannot be manually edited.
+- Source attribution is captured at lead arrival and remains historically preserved.
