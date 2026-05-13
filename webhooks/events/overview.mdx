@@ -18,9 +18,22 @@ Spark360 publishes lead and widget events from application-layer trigger points 
   `lead.enriched` is mandatory for every webhook subscription and cannot be deselected.
 </Note>
 
-## Source tracking — system fallback values
+## Source tracking — captured per-widget
 
-Every lead event includes these defaults:
+Every lead event includes a `source_tracking` block reflecting the specific widget and source that captured the lead. For multi-widget organizations (Ultimate and Premium tiers), the values identify which specific widget produced the lead:
+
+```json
+{
+  "source_tracking": {
+    "widget_version": "02",
+    "widget_name": "New Spark 02",
+    "source_code": "03",
+    "source_label": "Instagram"
+  }
+}
+```
+
+For single-widget organizations (Starter tier), the values default to the Primary widget and the originating source:
 
 ```json
 {

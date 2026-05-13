@@ -1,9 +1,9 @@
 ---
 title: "widget.status_changed"
-description: "Optional webhook fired when organizations.widget_status changes."
+description: "Optional webhook fired when a widget's status changes."
 ---
 
-`widget.status_changed` fires from the existing `widget.updated` handling path when `organizations.widget_status` is updated.
+`widget.status_changed` fires from the `widget.updated` handling path when an individual widget's status transitions (e.g., active ↔ inactive). For organizations with multiple widgets, the event identifies the specific widget that changed via the nested `widget` block.
 
 <Note>
   `lead.enriched` is required for all subscriptions, even if only widget events are enabled.
@@ -16,6 +16,11 @@ description: "Optional webhook fired when organizations.widget_status changes."
   "timestamp": "2026-04-06T14:22:00Z",
   "organization_id": "b8ff2073-228d-4f0f-b5db-28b49cf4069e",
   "data": {
+    "widget": {
+      "widget_ref_id": "14a60bd9-babb-4ad0-8ec8-6a259f186701",
+      "widget_name": "New Spark 02",
+      "widget_version": "02"
+    },
     "widget_status": "inactive",
     "previous_status": "active",
     "changed_by": "system"
@@ -23,6 +28,17 @@ description: "Optional webhook fired when organizations.widget_status changes."
 }
 ```
 
-- `changed_by: "system"` indicates a subscription-status-driven update
-- `changed_by: "admin"` indicates a SuperAdmin manual toggle
-- `source_tracking` is intentionally omitted for this event because it is a widget-level status change, not a lead/source event.
+### Field reference
+
+- `widget.widget_ref_id` — the unique reference ID for the specific widget that changed status. Matches `widget_reference_id` on lead events.
+- `widget.widget_name` — the human-readable name of the widget (e.g., "Primary", "New Spark 02").
+- `widget.widget_version` — the widget's version identifier (e.g., "01", "02").
+- `widget_status` — the new status (`active` or `inactive`).
+- `previous_status` — the prior status before the change.
+- `changed_by` — the actor that initiated the change:
+  - `system` — automated update (e.g., subscription status change, Quantiv toggle)
+  - `admin` — manual Spark360 administrator toggle
+
+<Note>
+  `source_tracking` is intentionally omitted for this event because it is a widget-level status change, not a lead/source event.
+</Note>
