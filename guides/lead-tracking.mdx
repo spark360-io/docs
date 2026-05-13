@@ -9,11 +9,11 @@ Lead Source Tracking helps you attribute incoming leads to the specific channels
 
 Spark360 captures source attribution at the moment a lead arrives and preserves that attribution historically. This means your reporting stays accurate over time, even if you later rename or reorganize your sources. Each widget supports up to 10 active custom sources.
 
-![The Lead Source Tracking page in its initial state, showing only the system Website source.](/images/lead-tracking/01-lead-source-tracking-initial-state.png)
+![The Lead Sources For card showing the widget selector dropdown in the Manage My Spark page.](/images/lead-tracking/lead-sources-for-card.png)
 
 ## 2) How it works
 
-Each Spark360 subscriber has a widget configured for their website. Lead Source Tracking lets that same widget capture leads from multiple sources by using tracking URL parameters (`?v=` and `?s=`) that identify source context.
+Each Spark360 subscriber configures one or more widgets for their website. Lead Source Tracking lets each widget capture leads from multiple sources by using tracking URL parameters (`?v=` and `?s=`) that identify source context.
 
 When a lead arrives, Spark360 records the source used for that submission and stores it with the lead.
 
@@ -31,13 +31,30 @@ It captures leads that arrive without specific tracking parameters, such as dire
 The system source is immutable: SRC-01 cannot be archived or renamed.
 </Note>
 
-## 4) Creating a custom source
+## 4) Choosing which widget to manage
+
+If you have multiple widgets configured (number of widgets available depends on your subscription tier), the **Lead Sources For** card at the top left of the Lead Sources tab lets you select which widget's sources you're managing.
+
+![The Lead Sources For card showing the widget selector dropdown.](/images/lead-tracking/lead-sources-for-card.png)
+
+- The dropdown defaults to your **Primary** widget when you first arrive on the tab
+- Selecting a different widget loads that widget's source list, including its system Website source and any custom sources you've created for it
+- Each widget has its own independent set of sources — adding or archiving a source for one widget does not affect another widget's sources
+- Archived widgets and widgets that are not yet configured do not appear in the dropdown
+
+For single-widget organizations, the dropdown shows your Primary widget and is disabled — there's only one widget to manage, so no selection is needed.
+
+<Note>
+Switching widgets in the dropdown updates the URL in your browser. You can bookmark or share a link directly to a specific widget's Lead Sources view.
+</Note>
+
+## 5) Creating a custom source
 
 Use the following walkthrough to create a custom source named **Facebook Ads**.
 
 <Steps>
-  <Step title="Open Lead Source Tracking">
-    In your Spark360 dashboard, go to **Settings** and open **Lead Source Tracking**.
+  <Step title="Open Lead Sources">
+    In your Spark360 dashboard, click **Manage My SPARK** in the left sidebar, then click the **Lead Sources** tab.
   </Step>
   <Step title="Click Add Source">
     Click **Add Source** (top-right button, or the empty-state add action if no custom sources exist yet).
@@ -74,7 +91,7 @@ Source Codes are sequential and never reused. If a source is archived, that Sour
 
 ![The Add Source slide-over panel with the Facebook Ads source name and Social Media category selected.](/images/lead-tracking/03-add-source-facebook-ads-social-media.png)
 
-## 5) Using your tracking URL
+## 6) Using your tracking URL
 
 Each source has a Tracking URL shown in the **Tracking URL** column. The URL includes parameters that identify the source, such as `?roof-estimate=open&v=01&s=02`.
 
@@ -89,7 +106,7 @@ Use the copy icon to copy the Tracking URL, then deploy it where that source is 
 
 You can run multiple sources at the same time. Each source points to the same widget flow but preserves separate attribution based on its Tracking URL.
 
-## 6) QR Code creation and download
+## 7) QR Code creation and download
 
 Each custom source can include an optional QR Code.
 
@@ -104,9 +121,9 @@ Each custom source can include an optional QR Code.
 Downloaded QR files follow this format: `<OrgName>-<SourceName>-v<widget_version>-s<source_code>-QR.png` (for example, `Spark360-Facebook-Ads-v01-s02-QR.png`).
 </Note>
 
-![Lead Source Tracking page showing custom sources with QR Code download links available.](/images/lead-tracking/04-lead-source-tracking-qr-download-and-generate.png)
+![Lead Source Tracking page showing custom sources with QR Code download links available.](/images/lead-tracking/lead-source-tracking-qr-code.png)
 
-## 7) Reading source data on the dashboard
+## 8) Reading source data on the dashboard
 
 Lead attribution appears directly in the leads experience:
 
@@ -119,7 +136,7 @@ For broader dashboard behavior, see the [Lead Dashboard Guide](/guides/lead-dash
 
 ![Leads dashboard with the Source column displaying source attribution pills for each lead.](/images/lead-tracking/06-leads-dashboard-source-pill-column.png)
 
-## 8) Source attribution in webhook payloads
+## 9) Source attribution in webhook payloads
 
 If you consume outbound lead webhooks, source attribution is included in the `source_tracking` object.
 
@@ -130,9 +147,11 @@ If you consume outbound lead webhooks, source attribution is included in the `so
 
 `source_label` reflects the Source Name captured at lead arrival (snapshot behavior), not a live lookup against current source labels.
 
+For multi-widget organizations, `widget_name` and `widget_version` identify which specific widget captured the lead — useful when a single subscriber is running multiple widgets across different domains or campaigns.
+
 For full payload structure, see the [Webhook payload reference](/webhooks/payloads/common-envelope).
 
-## 9) Managing sources
+## 10) Managing sources
 
 Use row actions (ellipsis menu) to manage custom sources over time:
 
@@ -150,7 +169,7 @@ Important behavior:
 A widget supports up to 10 active custom sources at a time. If you hit the limit, archive an existing custom source before adding a new one.
 </Warning>
 
-## 10) Limits and rules
+## 11) Limits and rules
 
 - Up to 10 active lead sources per widget (includes system SRC-01).
 - Source Codes are sequential and never reused.
