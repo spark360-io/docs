@@ -1,0 +1,189 @@
+---
+title: "Pricing Templates"
+description: "Set localized installed pricing for specific U.S. states."
+---
+
+## Overview
+
+Pricing Templates let you set localized installed pricing for specific U.S. states. By default, every Spark uses one installed price for every estimate, regardless of where the homeowner lives. Pricing Templates let you override that default in specific states where local market conditions justify different pricing — labor costs, material costs, competitive landscape, or any other reason.
+
+If you operate in multiple states with meaningfully different pricing dynamics, Pricing Templates let your estimates reflect those differences automatically.
+
+<Note>
+  **Pricing Templates are available to Ultimate and Premium subscribers.** Starter subscribers can see the tab but cannot create or edit templates. Upgrade your subscription to use this feature.
+</Note>
+
+## Getting Started
+
+To open the Pricing Templates tab:
+
+1. From the Dashboard, click **Manage My Spark** in the left navigation. (See the [Set Up Your SPARK guide](/guides/setup-your-spark) for an overview of the Manage My Spark page.)
+2. The **Spark Configuration & Management** page opens. By default, the **Sparks** tab is selected.
+3. Click the **Pricing Templates** tab.
+
+## Understanding the Pricing Templates Page
+
+### The page header
+
+At the top of the page, you'll see the **Pricing Templates** heading along with a brief description and an **+ Add Pricing Template** button. A link to this guide is also available from the header for quick reference.
+
+### Summary cards
+
+Below the header are three summary cards:
+
+- **Pricing Templates For** — Shows which Spark these templates apply to. If you have more than one Spark, use the dropdown to switch between them. Pricing Templates are Spark-specific — each Spark has its own set of templates. (This works similarly to [Lead Source Tracking](/guides/lead-tracking), where each Spark has its own sources.)
+- **Active Template Limit** — Displays how many active templates you're currently using out of the 10 active template limit. Default Pricing counts toward this limit. The progress bar gives a visual indicator of how close you are to the cap.
+- **Last Template Added** — Shows the most recently added active template. When you first start, this will show **Default Pricing**.
+
+### The Active Pricing Templates table
+
+The main table lists all active templates for the selected Spark with these columns:
+
+- **Name** — The template name.
+- **Template #** — The system-assigned identifier (PT-01, PT-02, etc.).
+- **Installed Price** — The price used for estimate calculations.
+- **States Covered** — The state or states assigned to the template.
+- **Status** — Currently active or archived.
+- **Actions** — Menu of available actions (Edit, Archive, etc.).
+
+Default Pricing always appears as the first row.
+
+![Pricing Templates tab overview with numbered callouts: ① Pricing Templates Guide link, ② Add Pricing Template button, ③ Active Template Limit card, ④ Last Template Added card, ⑤ View Archived button](/images/guides/pricing-templates/pricing-templates-tab-overview.png)
+
+## Default Pricing
+
+Every Spark starts with a special template called **Default Pricing**. It's the catch-all template that applies to every state not assigned to another template.
+
+Default Pricing:
+
+- Is automatically created when your Spark is set up (see [Set Up Your SPARK](/guides/setup-your-spark) for the full configuration flow).
+- Is assigned Template # **PT-01**.
+- Applies to all states not assigned to another template.
+- Cannot be renamed.
+- Cannot be archived.
+- Cannot have states manually added or removed (it implicitly covers all unassigned states).
+- Can have its **Installed Price** edited.
+
+To change the Default Pricing installed price, use the Edit option in the Actions menu on the Default Pricing row, or update it from the main Spark configuration.
+
+<Note>
+  **Default Pricing is shown with a "System" badge** to indicate it's a system-managed template.
+</Note>
+
+### When a Spark is first created
+
+If you've just created a new Spark, you may briefly see a notice at the top of the Pricing Templates tab: **"Syncing pricing templates. Edits temporarily disabled. Refresh in a moment."** This is normal — your Spark is finalizing its setup. Refresh the page after a few seconds and the notice will clear.
+
+## Creating and Editing Templates
+
+### Creating a new template
+
+To create a localized pricing template:
+
+1. Click **+ Add Pricing Template**.
+2. Enter a descriptive name (for example: **Florida Pricing** or **Southeast Region**).
+3. Enter the **Installed Price** for that template.
+4. Select one or more U.S. states where this pricing should apply.
+5. Click **Save**.
+
+The new template appears in the **Active Pricing Templates** table. Your first user-created template is assigned **Template # PT-02**, the next is **PT-03**, and so on.
+
+![Add Pricing Template slide-over with numbered callouts: ① Name field, ② Installed Price field, ③ State pills row, ④ State search input](/images/guides/pricing-templates/add-pricing-template-slideover.png)
+
+### State selection rules
+
+Each state can only be assigned to one pricing template per Spark. Selected states appear as removable pills in the slide-over — click the **×** on any pill to remove that state from the template.
+
+![State picker showing a claimed state with numbered callout: ① Grayed-out unavailable state with "In use by" indicator](/images/guides/pricing-templates/state-picker-claimed-state.png)
+
+When you search for a state that's already assigned to another template, it appears in the search results grayed out, along with a note showing which template currently uses it — for example, **Florida — In use by "Southeast Pricing" (Active)**.
+
+<Tip>
+  **Archived templates still reserve their assigned states.** A state cannot be added to another template until it's removed from any template that currently holds it — even an archived one. See [Archiving and Restoring](#archiving-and-restoring) below for the canonical way to free states.
+</Tip>
+
+### Template name rules
+
+Each template name must be unique within a Spark. Archiving a template does not free up its name — to reuse a name from an archived template, first edit the archived template and change its name.
+
+If you try to save a template with a duplicate name, you'll see a message like **"A template with this name already exists on this Spark."** Just choose a different name or rename the existing template first.
+
+### Editing templates
+
+To edit an existing template, click the ellipsis (`...`) in the Actions column and choose **Edit**.
+
+For **Default Pricing**, you can only edit the **Installed Price**. The name and state coverage are managed by the system.
+
+For your own templates, you can edit:
+
+- Template name
+- Installed price
+- Assigned states
+
+Both active and archived templates can be edited. Editing an archived template is useful when you want to rename it, remove its states (to free those states for other templates), or prepare it before restoring.
+
+## Archiving and Restoring
+
+### Archiving a template
+
+To stop using a localized pricing template, click the ellipsis in the Actions column and choose **Archive**. There's no confirmation step — archiving is one click and reversible.
+
+When you archive a template:
+
+- It no longer affects live estimate pricing. States it covered will be priced using Default Pricing.
+- It retains its assigned states until you remove them. The states remain reserved by the archived template.
+- It does not count toward the 10 active template limit.
+- It can still be edited, restored, or used to free up state assignments.
+
+Default Pricing cannot be archived.
+
+### Freeing states from an archived template
+
+If you want to fully release a state for use by a different template, archive isn't enough — you need to also remove the state from the archived template. The flow:
+
+1. Switch to the archived view by clicking **View Archived**.
+2. Open the archived template via the Actions menu.
+3. Remove the state pills you want to release (click the **×** on each).
+4. Click **Save**.
+
+The states are now released and available for selection by other templates. The archived template remains, just with no state assignments. (You won't be able to restore it until you assign at least one state.)
+
+### Restoring an archived template
+
+To bring an archived template back to active status:
+
+1. Click **View Archived** to switch to the archived view.
+2. Click the ellipsis on the archived template you want to restore.
+3. Click **Restore**.
+
+![Archived Pricing Templates view with numbered callouts: ① View Active toggle, ② Restore action in the ellipsis menu](/images/guides/pricing-templates/archived-templates-restore.png)
+
+Two rules to know:
+
+- **Cap rule:** If you already have 10 active templates, you'll need to archive one first. The Restore action will be disabled with a tooltip: "You've reached the 10-template limit. Archive a template to restore another."
+- **State rule:** An archived template with no assigned states (a "ghost") cannot be restored. The Restore action will be disabled with a tooltip: "Add at least one state before activating." Add at least one state to the template via Edit, then restore it.
+
+### Archived view
+
+While in the archived view, the page title changes to **Archived Pricing Templates** and the button toggles to **View Active**. Click **View Active** to return to the main view.
+
+## A Practical Example
+
+A roofing contractor operates in three states: Florida, Georgia, and Tennessee. Their Default Pricing installed price is **$475.00**.
+
+In Florida, labor and material costs are higher, so they create a localized template:
+
+| Field | Value |
+|---|---|
+| Name | Florida Pricing |
+| Installed Price | $525.00 |
+| States Covered | Florida |
+| Template # | PT-02 |
+| Status | Active |
+
+After saving:
+
+- Florida estimates use the **Florida Pricing** template at **$525.00**.
+- Georgia and Tennessee estimates continue using **Default Pricing** at **$475.00**.
+
+If the contractor later archives Florida Pricing, Florida automatically falls back to Default Pricing at **$475.00** for live estimates. Florida remains assigned to the archived Florida Pricing template, however — so it cannot be added to a new template until it's removed from the archived one (or the archived template is restored).

@@ -70,7 +70,8 @@
             "pages": [
               "guides/lead-dashboard",
               "guides/setup-your-spark",
-              "guides/lead-tracking"
+              "guides/lead-tracking",
+              "guides/pricing-templates"
             ]
           }
         ]
