@@ -63,6 +63,8 @@ Lead payloads include:
       "years_in_home": "16",
       "owner_occupied": true,
       "rental_alert": false,
+      "trust_alert": false,
+      "business_alert": false,
       "primary_owner": "John Joanna",
       "accuracy_code": "H"
     },
@@ -100,3 +102,22 @@ Lead payloads include:
   }
 }
 ```
+
+## Property alerts
+
+`owner_occupied` is the raw enrichment value and can be `true`, `false`, or `null`. The alert fields beside it are separate.
+
+| Field | Type | Description |
+|---|---|---|
+| `rental_alert` | `boolean` | `true` when the lead-score assessment reports an occupancy defect, including entity-owned properties (LLC, trust) where owner occupancy is unknown. It does not mean `owner_occupied === false`. It can be `true` while `owner_occupied` is `null`, or, rarely, `true` while `owner_occupied` is `true` when the data provider sent a rental signal. `false` when there is no occupancy defect. |
+| `trust_alert` | `boolean \| null` | `true` when the owner of record appears to be a trust or estate. Informational only; it does not affect the Lead Score. Additive and non-breaking. `null` for leads enriched before 2026-09-30, or when enrichment failed. |
+| `business_alert` | `boolean \| null` | `true` when the owner of record appears to be a business entity (LLC, Corp, Inc, and similar). Informational only; it does not affect the Lead Score. Additive and non-breaking. `null` for leads enriched before 2026-09-30, or when enrichment failed. |
+
+A lead can carry more than one alert. `trust_alert` and `business_alert` appear on `lead.enriched` only.
+
+## Changelog
+
+**2026-09-30**
+
+- Added `property.trust_alert` and `property.business_alert` immediately after `property.rental_alert`. Both are `boolean | null`, additive, and non-breaking. `null` means the lead was enriched before this date or enrichment failed.
+- Corrected `property.rental_alert`. It is now `true` when the lead-score assessment reports an occupancy defect, including unknown occupancy on an entity-owned property. It is no longer `owner_occupied === false`. Field name, boolean type, and position are unchanged. `owner_occupied` still passes through unchanged and can disagree with `rental_alert`.

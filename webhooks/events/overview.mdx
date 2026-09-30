@@ -10,7 +10,7 @@ Spark360 publishes lead and widget events from application-layer trigger points 
 | `lead.created` | `address_info_provided` | `lead.address_preview` | Leads INSERT | Optional |
 | `lead.updated` | `project_details_provided` | *(no outbound event)* | — | — |
 | `lead.updated` | `personal_info_and_estimate_provided` | `lead.enriched` | Enrichment write-back complete | **REQUIRED — locked** |
-| `lead.updated` | `personal_info_and_estimate_provided` + `ownerOccupied=false` | `lead.rental_alert` | Same as above, occupancy check | Optional |
+| `lead.updated` | `personal_info_and_estimate_provided` + occupancy defect | `lead.rental_alert` | Same as above, when the lead score reports an occupancy defect | Optional |
 | `lead.updated` | `contact_info_provided` | `lead.contact_requested` | Leads UPDATE | Optional |
 | `widget.updated` | n/a | `widget.status_changed` | `organizations.widget_status` UPDATE | Optional |
 
@@ -50,7 +50,7 @@ For single-widget organizations (Starter tier), the values default to the Primar
 
 1. `lead.address_preview` fires first on initial address submission and is address-only (no name or contact info).
 2. `lead.enriched` fires after enrichment is complete and write-back includes scores, buyer insights, and roof estimate fields.
-3. `lead.rental_alert` can fire alongside `lead.enriched` when `owner_occupied = false`.
+3. `lead.rental_alert` can fire alongside `lead.enriched` when the lead-score assessment reports an occupancy defect, including entity-owned properties where owner occupancy is unknown. It does not key off `owner_occupied`.
 4. `lead.contact_requested` fires last only if the homeowner completes the optional contact preference step.
 
 <Note>

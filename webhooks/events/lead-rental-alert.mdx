@@ -1,9 +1,11 @@
 ---
 title: "lead.rental_alert"
-description: "Optional rental-specific webhook that can co-fire with lead.enriched."
+description: "Optional webhook that co-fires with lead.enriched when the lead score reports an occupancy defect."
 ---
 
-`lead.rental_alert` fires alongside `lead.enriched` when `property.owner_occupied = false`.
+`lead.rental_alert` fires alongside `lead.enriched` when the lead-score assessment reports an occupancy defect. That includes entity-owned properties (LLC, trust) where owner occupancy is unknown. It does not fire because `owner_occupied` is `false`.
+
+`property.owner_occupied` in this payload is the raw enrichment value and still passes through unchanged. `rental_alert` can be `true` while `owner_occupied` is `null` (entity owner) or, rarely, `true` (a rental signal from the data provider). Field name, boolean type, and position are unchanged.
 
 <Note>
   `lead.enriched` remains required for all subscriptions.
@@ -52,3 +54,14 @@ Lead payloads include:
   }
 }
 ```
+
+The example above is one valid case: an occupancy defect where `owner_occupied` is `false`. The same event is sent when `owner_occupied` is `null` or `true`, as long as the occupancy defect is present. `rental_alert` in this payload is `true` because the event only fires for that defect.
+
+## Changelog
+
+**2026-09-30**
+
+- Corrected the trigger and the payload flag. `lead.rental_alert` now fires when the lead-score assessment reports an occupancy defect, including unknown occupancy on an entity-owned property. It no longer fires on `owner_occupied === false`.
+- `property.owner_occupied` remains the raw value. It is no longer hardcoded to `false`.
+- Event name, `rental_alert` field name, boolean type, and key position are unchanged.
+- `trust_alert` and `business_alert` were added on `lead.enriched` only. They are not on this event.

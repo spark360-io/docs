@@ -21,7 +21,7 @@ Use the tools and scenarios below to validate Spark360 webhook behavior end to e
 | 4xx abandonment | Return 403 from endpoint | Immediate `abandoned`, no retries |
 | 5xx retry sequence | Return 500 from endpoint | Retries, warning on attempt 4, abandonment on attempt 5 |
 | Required core event | Configure optional events only | `lead.enriched` still fires |
-| Rental co-fire | Trigger non-owner-occupied lead | `lead.enriched` and `lead.rental_alert` both deliver |
+| Rental co-fire | Trigger a lead whose lead score reports an occupancy defect | `lead.enriched` (`rental_alert: true`) and `lead.rental_alert` both deliver. `owner_occupied` in both payloads is the raw value |
 | Test Endpoint button | Run test from Settings UI | Sample `lead.enriched` delivered with inline response |
 
 ## Source tracking fallback values to verify
