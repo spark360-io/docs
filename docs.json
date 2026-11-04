@@ -69,7 +69,14 @@
             "group": "Getting Started",
             "pages": [
               "guides/lead-dashboard",
-              "guides/setup-your-spark",
+              {
+                "group": "Set Up Your Spark",
+                "pages": [
+                  "guides/setup-your-spark",
+                  "guides/setup-roof-estimate",
+                  "guides/setup-lead-capture"
+                ]
+              },
               "guides/lead-tracking",
               "guides/pricing-templates"
             ]
